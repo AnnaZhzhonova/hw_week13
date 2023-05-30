@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style/style.css" />
+    <title>Comments</title>
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <h1 class="title">Сервис комментариев со спам фильтром</h1>
+        <div class="chat">
+          <form class="user-data">
+            <h2 class="subtitle">Оставьте ваш комментарий</h2>
+            <h3 class="user-data__title">Введите ваше имя:</h3>
+            <input type="text" id="user-name" class="user-data__field" value="" />
+            <h3 class="user-data__title">Введите ссылку на ваш аватар:</h3>
+            <input type="text" id="user-link" class="user-data__field" value=""/>
+            <h3 class="user-data__title">Оставьте комментарий:</h3>
+            <textarea id="user-text" class="user-data__textarea" required></textarea>
+            <input class="button" type="submit" value="Отправить" />
+          </form>
+          <div class="comment">
+            <h2 class="subtitle">Чат</h2>
+            <div class="comment__box">
+              <div class="comment__avatar"></div>
+              <p class="comment__name"></p>
+              <p class="comment__text"></p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="./index.js"></script>
+  </body>
+</html>
