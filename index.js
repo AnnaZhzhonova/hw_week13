@@ -50,13 +50,24 @@ const options = {
 };
 
 //отрисовка html
-/* const commentBox = document.querySelector(".comment");
-function addNewComment() {
-  const container = document.createElement("div");
-  container.innerHTML =
-    '<div class="comment__avatar"></div><div class="comment__name-box"><p class="comment__name"></p><span id="time"></span></div><p class="comment__text"></p>';
+/* 
+function addNewComment(img, name, time, text) {
+  const avatar = document.createElement("div");
+  avatar.innerHTML = img;
 
-  commentBox.append(container);
+  const userName = document.createElement("p");
+  userName.textContent = name;
+
+  const postingTime = document.createElement("span");
+  postingTim.textContent = time;
+
+  const commentText = document.createElement("p");
+  commentText.textContent = text;
+
+  const commentBox = document.querySelector(".comment");
+  commentBox.append(avatar);
+  commentBox.append(userName);
+  commentBox.append(postingTime);
 } */
 
 button.addEventListener(
