@@ -50,40 +50,45 @@ const options = {
 };
 
 //отрисовка html
-const commentBox = document.querySelector(".comment");
+/* const commentBox = document.querySelector(".comment");
 function addNewComment() {
   const container = document.createElement("div");
   container.innerHTML =
     '<div class="comment__avatar"></div><div class="comment__name-box"><p class="comment__name"></p><span id="time"></span></div><p class="comment__text"></p>';
 
   commentBox.append(container);
-}
+} */
 
-button.addEventListener("click", (event) => {
-  event.preventDefault();
+button.addEventListener(
+  "click",
+  (event) => {
+    event.preventDefault();
 
-  if (chechboxAnonim.checked === true) {
-    commentName.textContent = plugName;
-  } else if (userName.value === "") {
-    commentName.textContent = "Salem";
-  } else {
-    commentName.textContent = modifyUserName(userName.value);
+    if (chechboxAnonim.checked === true) {
+      commentName.textContent = plugName;
+    } else if (userName.value === "") {
+      commentName.textContent = "Salem";
+    } else {
+      commentName.textContent = modifyUserName(userName.value);
+    }
+
+    if (userLink.value === "") {
+      const image = document.createElement("img");
+      image.src = randomAvatar;
+      commentAvatar.append(image);
+    } else {
+      showAvatar(userLink.value);
+    }
+
+    if (userText.value === "") {
+      commentText.value = "Я люблю котиков";
+    } else {
+      commentText.textContent = checkSpam(userText.value);
+    }
+    postingTime.textContent = date.toLocaleString("ru", options);
+    document.querySelector(".user-data").reset();
+  },
+  {
+    once: true,
   }
-
-  if (userLink.value === "") {
-    const image = document.createElement("img");
-    image.src = randomAvatar;
-    commentAvatar.append(image);
-  } else {
-    showAvatar(userLink.value);
-  }
-
-  if (userText.value === "") {
-    commentText.value = "Я люблю котиков";
-  } else {
-    commentText.textContent = checkSpam(userText.value);
-  }
-  postingTime.textContent = date.toLocaleString("ru", options);
-  addNewComment();
-  document.querySelector(".user-data").reset();
-});
+);
