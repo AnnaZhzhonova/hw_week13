@@ -24,6 +24,7 @@ function checkSpam(str) {
 const button = document.querySelector(".button");
 const commentName = document.querySelector(".comment__name");
 const commentText = document.querySelector(".comment__text");
+const chechboxAnonim = document.querySelector("#anonim-checkbox");
 const plugName = "username";
 
 //аватарки
@@ -48,17 +49,29 @@ const options = {
   minute: "numeric",
 };
 
+//отрисовка html
+const commentBox = document.querySelector(".comment");
+function addNewComment() {
+  const container = document.createElement("div");
+  container.innerHTML =
+    '<div class="comment__avatar"></div><div class="comment__name-box"><p class="comment__name"></p><span id="time"></span></div><p class="comment__text"></p>';
+
+  commentBox.append(container);
+}
+
 button.addEventListener("click", (event) => {
   event.preventDefault();
 
-  if (userName.value === "") {
+  if (chechboxAnonim.checked === true) {
     commentName.textContent = plugName;
+  } else if (userName.value === "") {
+    commentName.textContent = "Salem";
   } else {
     commentName.textContent = modifyUserName(userName.value);
   }
 
   if (userLink.value === "") {
-    let image = document.createElement("img");
+    const image = document.createElement("img");
     image.src = randomAvatar;
     commentAvatar.append(image);
   } else {
@@ -71,5 +84,6 @@ button.addEventListener("click", (event) => {
     commentText.textContent = checkSpam(userText.value);
   }
   postingTime.textContent = date.toLocaleString("ru", options);
+  addNewComment();
   document.querySelector(".user-data").reset();
 });
