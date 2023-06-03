@@ -78,7 +78,6 @@ function checkSpam(str) {
 const button = document.querySelector(".button");
 button.addEventListener("click", (event) => {
   event.preventDefault();
-
   const formatedName = showName(chechboxAnonim, userName);
   const avatar = showAvatar(userLink, arrayAvatars);
   const postingTime = date.toLocaleString("ru", options);
