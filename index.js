@@ -1,7 +1,3 @@
-const userName = document.querySelector("#user-name");
-const userLink = document.querySelector("#user-link");
-const userText = document.querySelector("#user-text");
-
 function modifyUserName(str) {
   if (!str) {
     return str;
@@ -9,25 +5,20 @@ function modifyUserName(str) {
   return (str[0].toUpperCase() + str.slice(1).toLowerCase()).trim();
 }
 
-const commentAvatar = document.querySelector(".comment__avatar");
-
-function showAvatar(src) {
-  let image = document.createElement("img");
-  image.src = src;
-  commentAvatar.append(image);
-}
-
-function checkSpam(str) {
-  return str.replace(/(viagra|XXX)/gi, "***");
-}
-
-const button = document.querySelector(".button");
-const commentName = document.querySelector(".comment__name");
-const commentText = document.querySelector(".comment__text");
 const chechboxAnonim = document.querySelector("#anonim-checkbox");
-const plugName = "username";
+const userName = document.querySelector("#user-name");
+const commentName = document.querySelector(".comment__name");
+const plugName = "Salem";
 
-//аватарки
+function showName(checkbox, inputname, username) {
+  if (checkbox.checked === true || inputname.value === "") {
+    username.textContent = plugName;
+  } else {
+    username.textContent = modifyUserName(inputname.value);
+  }
+}
+
+const userLink = document.querySelector("#user-link");
 const arrayAvatars = [
   "./assets/images/avatar_1.jpg",
   "./assets/images/avatar_2.jpg",
@@ -38,8 +29,17 @@ const arrayAvatars = [
 const randomAvatar =
   arrayAvatars[Math.floor(Math.random() * arrayAvatars.length)];
 
-//время
-const postingTime = document.querySelector("#time");
+const commentAvatar = document.querySelector(".comment__avatar");
+
+function showAvatar(link, image) {
+  if (link.value === "") {
+    image.src = randomAvatar;
+  } else {
+    image.src = link.value;
+  }
+}
+
+const postingTime = document.querySelector(".time");
 const date = new Date();
 const options = {
   year: "numeric",
@@ -49,57 +49,20 @@ const options = {
   minute: "numeric",
 };
 
-//отрисовка html
-/* 
-function addNewComment(img, name, time, text) {
-  const avatar = document.createElement("div");
-  avatar.innerHTML = img;
+const userText = document.querySelector("#user-text");
+const commentText = document.querySelector(".comment__text");
 
-  const userName = document.createElement("p");
-  userName.textContent = name;
+function checkSpam(str) {
+  return str.replace(/(viagra|XXX)/gi, "***");
+}
 
-  const postingTime = document.createElement("span");
-  postingTim.textContent = time;
+const button = document.querySelector(".button");
+button.addEventListener("click", (event) => {
+  event.preventDefault();
+  showName(chechboxAnonim, userName, commentName);
+  postingTime.textContent = date.toLocaleString("ru", options);
+  showAvatar(userLink, commentAvatar);
+  commentText.textContent = checkSpam(userText.value);
 
-  const commentText = document.createElement("p");
-  commentText.textContent = text;
-
-  const commentBox = document.querySelector(".comment");
-  commentBox.append(avatar);
-  commentBox.append(userName);
-  commentBox.append(postingTime);
-} */
-
-button.addEventListener(
-  "click",
-  (event) => {
-    event.preventDefault();
-
-    if (chechboxAnonim.checked === true) {
-      commentName.textContent = plugName;
-    } else if (userName.value === "") {
-      commentName.textContent = "Salem";
-    } else {
-      commentName.textContent = modifyUserName(userName.value);
-    }
-
-    if (userLink.value === "") {
-      const image = document.createElement("img");
-      image.src = randomAvatar;
-      commentAvatar.append(image);
-    } else {
-      showAvatar(userLink.value);
-    }
-
-    if (userText.value === "") {
-      commentText.value = "Я люблю котиков";
-    } else {
-      commentText.textContent = checkSpam(userText.value);
-    }
-    postingTime.textContent = date.toLocaleString("ru", options);
-    document.querySelector(".user-data").reset();
-  },
-  {
-    once: true,
-  }
-);
+  document.querySelector(".user-data").reset();
+});

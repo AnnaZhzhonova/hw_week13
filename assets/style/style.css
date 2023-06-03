@@ -71,14 +71,14 @@ img {
   font-size: 14px;
 }
 .comment__box,
-.comment__name-box,
-.comment__text {
+.comment__name-box {
   border: 1px dashed #dd63e3;
 }
 .comment__box {
   display: grid;
   grid-template-columns: 50px 1fr;
   grid-template-rows: 50px 1fr;
+  margin: 20px auto;
 }
 .comment__avatar {
   grid-area: 1/1/2/2;
@@ -91,7 +91,7 @@ img {
   display: flex;
   flex-direction: column;
 }
-#time {
+.time {
   margin: 2px 20px;
   font-size: 10px;
 }
