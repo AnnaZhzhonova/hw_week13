@@ -48,12 +48,11 @@ const arrayAvatars = [
   "./assets/images/avatar_4.jpg",
   "./assets/images/avatar_5.jpg",
 ];
-const randomAvatar =
-  arrayAvatars[Math.floor(Math.random() * arrayAvatars.length)];
 
-function showAvatar(link) {
+function showAvatar(link, array) {
   if (link.value === "") {
-    return randomAvatar;
+    position = Math.floor(Math.random() * array.length);
+    return array[position];
   } else {
     return link.value;
   }
@@ -81,7 +80,7 @@ button.addEventListener("click", (event) => {
   event.preventDefault();
 
   const formatedName = showName(chechboxAnonim, userName);
-  const avatar = showAvatar(userLink, randomAvatar);
+  const avatar = showAvatar(userLink, arrayAvatars);
   const postingTime = date.toLocaleString("ru", options);
   const formattedComment = checkSpam(commentText.value);
 
