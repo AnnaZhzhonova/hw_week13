@@ -1,23 +1,45 @@
-function modifyUserName(str) {
-  if (!str) {
-    return str;
-  }
-  return (str[0].toUpperCase() + str.slice(1).toLowerCase()).trim();
-}
+function showComment(name, imageSrc, time, text) {
+  const commentbox = document.createElement("div");
+  commentbox.classList.add("comment");
 
+  const nametext = document.createElement("p");
+  nametext.textContent = name;
+  nametext.classList.add("comment__name");
+
+  const image = document.createElement("img");
+  image.src = imageSrc;
+  image.classList.add("comment__avatar");
+
+  const postTime = document.createElement("span");
+  postTime.textContent = time;
+  postTime.classList.add("time");
+
+  const comment = document.createElement("p");
+  comment.textContent = text;
+  comment.classList.add("comment__text");
+
+  const container = document.querySelector(".comment-box");
+  container.append(commentbox);
+  commentbox.append(image);
+  commentbox.append(nametext);
+  nametext.append(postTime);
+  commentbox.append(comment);
+}
+//форматирование имени
 const chechboxAnonim = document.querySelector("#anonim-checkbox");
 const userName = document.querySelector("#user-name");
-const commentName = document.querySelector(".comment__name");
 const plugName = "Salem";
 
-function showName(checkbox, inputname, username) {
-  if (checkbox.checked === true || inputname.value === "") {
-    username.textContent = plugName;
+function showName(checkbox, name) {
+  if (checkbox.checked === true || name.value === "") {
+    return plugName;
   } else {
-    username.textContent = modifyUserName(inputname.value);
+    return (
+      name.value[0].toUpperCase() + name.value.slice(1).toLowerCase()
+    ).trim();
   }
 }
-
+//покажи фотку
 const userLink = document.querySelector("#user-link");
 const arrayAvatars = [
   "./assets/images/avatar_1.jpg",
@@ -29,16 +51,15 @@ const arrayAvatars = [
 const randomAvatar =
   arrayAvatars[Math.floor(Math.random() * arrayAvatars.length)];
 
-const commentAvatar = document.querySelector(".comment__avatar");
-
-function showAvatar(link, image) {
+function showAvatar(link) {
   if (link.value === "") {
-    image.src = randomAvatar;
+    return randomAvatar;
   } else {
-    image.src = link.value;
+    return link.value;
   }
 }
 
+//время
 const postingTime = document.querySelector(".time");
 const date = new Date();
 const options = {
@@ -48,21 +69,23 @@ const options = {
   hour: "numeric",
   minute: "numeric",
 };
-
-const userText = document.querySelector("#user-text");
-const commentText = document.querySelector(".comment__text");
-
+//чекспам
+const commentText = document.querySelector("#user-text");
 function checkSpam(str) {
-  return str.replace(/(viagra|XXX)/gi, "***");
+  const censors = /(viagra|XXX)/gi;
+  return str.replace(censors, "***");
 }
 
 const button = document.querySelector(".button");
 button.addEventListener("click", (event) => {
   event.preventDefault();
-  showName(chechboxAnonim, userName, commentName);
-  postingTime.textContent = date.toLocaleString("ru", options);
-  showAvatar(userLink, commentAvatar);
-  commentText.textContent = checkSpam(userText.value);
+
+  const formatedName = showName(chechboxAnonim, userName);
+  const avatar = showAvatar(userLink, randomAvatar);
+  const postingTime = date.toLocaleString("ru", options);
+  const formattedComment = checkSpam(commentText.value);
+
+  showComment(formatedName, avatar, postingTime, formattedComment);
 
   document.querySelector(".user-data").reset();
 });
