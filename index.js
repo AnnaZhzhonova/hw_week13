@@ -68,7 +68,7 @@ const options = {
   hour: "numeric",
   minute: "numeric",
 };
-//чекспам
+
 const commentText = document.querySelector("#user-text");
 function checkSpam(str) {
   const censors = /(viagra|XXX)/gi;
