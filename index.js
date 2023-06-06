@@ -25,7 +25,7 @@ function showComment(name, imageSrc, time, text) {
   nametext.append(postTime);
   commentbox.append(comment);
 }
-//форматирование имени
+
 const chechboxAnonim = document.querySelector("#anonim-checkbox");
 const userName = document.querySelector("#user-name");
 const plugName = "Salem";
@@ -39,7 +39,7 @@ function showName(checkbox, name) {
     ).trim();
   }
 }
-//покажи фотку
+
 const userLink = document.querySelector("#user-link");
 const arrayAvatars = [
   "./assets/images/avatar_1.jpg",
@@ -58,7 +58,7 @@ function showAvatar(link, array) {
   }
 }
 
-//время
+
 const postingTime = document.querySelector(".time");
 const date = new Date();
 const options = {
